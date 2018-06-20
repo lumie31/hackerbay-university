@@ -1,0 +1,22 @@
+{
+  "name": "hackerbay-university",
+  "version": "1.0.0",
+  "description": "A repository that contains all tasks for hackerbay university program",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lumie31/hackerbay-university.git"
+  },
+  "author": "Olumide",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lumie31/hackerbay-university/issues"
+  },
+  "homepage": "https://github.com/lumie31/hackerbay-university#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
