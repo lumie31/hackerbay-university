@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lumie31/hackerbay-university#readme",
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "express": "^4.16.3",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
