@@ -29,11 +29,6 @@ let User = connection.define("user", {
     type: Sequelize.STRING
   }
 });
-// User.hook("beforeValidate", (user, options) => {
-//   return bcrypt.hash(user.password, saltRounds).then(hashedPw => {
-//     user.password = hashedPw;
-//   });
-// });
 
 User.beforeValidate((user, options) => {
   return bcrypt.hash(user.password, saltRounds).then(hashedPw => {
