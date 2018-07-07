@@ -4,7 +4,7 @@ This repository contains all my output for the HackerBay University Program.
 
 It's a work in progress 🚧👷 that would get updated as I move on with the program. To have a look at what I learn during this program, feel free to peep this repository. Cheers!!! 
 
-### Task 1 🐌
+### Task 1 🐌 - [writing simple APIs]
 Wrote simple APIs to demonstrate my understanding on how APIs work. Was tasked to write simple GET and POST APIs that performed a certain function.
 
 ### Task 2 🚀
