@@ -26,17 +26,6 @@ app.use(
 // Passport Init
 app.use(passport.initialize());
 app.use(passport.session());
-// app.get("/", (req, res) => res.status(200).send("success"));
-
-// let data;
-
-// app.post("/data", (req, res) => {
-//   data = req.body.data;
-//   return res.status(200).json(data);
-// });
-// app.get("/data", (req, res) => {
-//   return res.json(data);
-// });
 
 // Add postgres connection and db logic
 const connection = new Sequelize("hack", "postgres", "lumidizzle31", {
@@ -51,6 +40,8 @@ const connection = new Sequelize("hack", "postgres", "lumidizzle31", {
     idle: 10000
   }
 });
+
+connection.sync();
 
 // Model the schema for the db
 let User = connection.define("user", {
@@ -67,40 +58,39 @@ let User = connection.define("user", {
   }
 });
 
+User.beforeValidate((user, options) => {
+  return bcrypt.hash(user.password, saltRounds).then(hashedPw => {
+    user.password = hashedPw;
+  });
+});
+
 app.post("/user/signup", (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    res.json({
+    res.status(400).json({
       success: false,
       message: "Incorrect details"
     });
   }
   if (email && password) {
-    User.beforeValidate((user, options) => {
-      return bcrypt.hash(user.password, saltRounds).then(hashedPw => {
-        user.password = hashedPw;
-      });
-    });
-    connection.sync().then(function() {
-      User.findOrCreate({
-        where: {
-          email,
-          password
-        }
-      }).spread((userResult, created) => {
-        if (created) {
-          return res.status(200).json({
-            success: true,
-            message: "User created successfully"
-          });
-        } else {
-          return res.status(400).json({
-            message: false,
-            message: "User already exists"
-          });
-        }
-      });
+    User.findOrCreate({
+      where: {
+        email,
+        password
+      }
+    }).spread((userResult, created) => {
+      if (created) {
+        return res.status(200).json({
+          success: true,
+          created
+        });
+      } else {
+        return res.status(400).json({
+          message: false,
+          message: "User already exists"
+        });
+      }
     });
   }
 });
@@ -126,10 +116,13 @@ passport.use(
 
 app.post("/user/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
-    if (err || !user) {
+    if (err) {
       return res.status(400).json({
-        message: "Something is not right",
-        user
+        message: "Error logging in"
+      });
+    } else if (!user) {
+      return res.status(400).json({
+        message: "Incorrect Email or Password"
       });
     }
     req.login(user, err => {
