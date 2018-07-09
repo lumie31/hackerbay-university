@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Beginning of Task 1
-app.get("/", (req, res) => res.status(200).send("success"));
+app.get("/", (req, res) => res.status(200).json({message: 'success'}));
 
 let data;
 
