@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/lumie31/hackerbay-university#readme",
   "dependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "express": "^4.16.3"
   }
 }

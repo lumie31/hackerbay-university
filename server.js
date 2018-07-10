@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Beginning of Task 1
-app.get("/", (req, res) => res.status(200).json({message: 'success'}));
+app.get("/", (req, res) => res.status(200).json({ message: "success" }));
 
 let data;
 
@@ -22,4 +22,6 @@ app.get("/data", (req, res) => {
 });
 app.listen(port, () => console.log(`Server started on port ${port}`));
 
-// End of Task 1 
+module.exports = app;
+
+// End of Task 1
