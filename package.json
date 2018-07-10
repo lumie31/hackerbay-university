@@ -4,7 +4,7 @@
   "description": "A repository that contains all tasks for hackerbay university program",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/lumie31/hackerbay-university#readme",
   "dependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }
