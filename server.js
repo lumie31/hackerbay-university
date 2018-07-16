@@ -17,10 +17,6 @@ const port = process.env.PORT || 8080;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-<<<<<<< HEAD
-// Beginning of Task 1
-app.get("/", (req, res) => res.status(200).json({ message: "success" }));
-=======
 app.use(
   session({
     secret: "secret",
@@ -32,7 +28,6 @@ app.use(
 // Passport Init
 app.use(passport.initialize());
 app.use(passport.session());
->>>>>>> task-2
 
 // Add postgres connection and db logic
 const connection = new Sequelize("hack", "postgres", "lumidizzle31", {
@@ -147,10 +142,3 @@ app.post("/user/login", (req, res, next) => {
 });
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
-<<<<<<< HEAD
-
-module.exports = app;
-
-// End of Task 1
-=======
->>>>>>> task-2
